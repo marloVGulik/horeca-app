@@ -27,14 +27,12 @@ while(addNew) {
 	}
 }
 
-function addItems(thingToAdd, priceOfThing) {
+function addItems(thingToAdd, priceOfThing) { // Function to easily add stuff
 	var amountToAdd = prompt("Hoeveel " + thingToAdd + " wil je bestellen?");
 	if(amountToAdd > 0) {
 		console.log("Amount is " + amountToAdd);
 		var localPrice = 0;
-		for (var i = 0; i < amountToAdd; i++) {
-			localPrice += priceOfThing;
-		}
+		localPrice += amountToAdd * priceOfThing;
 		orders[orders.length] = amountToAdd + " " + thingToAdd + ", \u20AC" + localPrice;
 		alert(amountToAdd + " " + thingToAdd + " bij de bestelling gedaan");
 		totalPrice += localPrice;
@@ -42,10 +40,10 @@ function addItems(thingToAdd, priceOfThing) {
 }
 
 var itemCount = 0;
-orders.forEach(function(item) {
+orders.forEach(function(item) { // Create list item with the right properties
 	var listItem = document.createElement("LI");
 	listItem.appendChild(document.createTextNode(item));
 	document.getElementById("List").appendChild(listItem);
 });
 
-document.getElementById("price").innerHTML = "\u20AC" + totalPrice;
+document.getElementById("price").innerHTML = "\u20AC" + totalPrice; // Print total price on screen
