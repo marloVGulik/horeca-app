@@ -5,27 +5,17 @@ var totalPrice = 0.0;
 while(addNew) {
 	var added = prompt("Wat wilt U drinken/eten?");
 	if(added == "fris" || added == "Fris") {
-		orders[orders.length] = "Fris, \u20AC1.50";
-		totalPrice += 1.50;
-		alert("Fris bij de bestelling gedaan");
+		addItems("Fris", 1.5);
 	} else if(added == "bier" || added == "Bier" || added == "pils" || added == "Pils") {
-		orders[orders.length] = "Bier, \u20AC2.50";
-		totalPrice += 2.50;
-		alert("Bier bij de bestelling gedaan");
+		addItems("Bier", 2.5);
 	} else if(added == "wijn" || added == "Wijn") {
-		orders[orders.length] = "Wijn, \u20AC3.50";
-		totalPrice += 3.50;
-		alert("Wijn bij de bestelling gedaan");
+		addItems("Wijn", 3.5);
 	} else if(added == "snack" || added == "Snack") {
 		var amount = prompt("Hoeveel bitterballen wilt U hebben? (8 of 16)");
 		if(amount == 8) {
-			orders[orders.length] = "8 bitterballen, \u20AC1.50";
-			totalPrice += 1.50;
-			alert("8 bitterballen bij de bestelling gedaan");
+			addItems("8 bitterballen", 1.5);
 		} else if(amount == 16) {
-			orders[orders.length] = "16 bitterballen, \u20AC2.50";
-			totalPrice += 2.50;
-			alert("16 bitterballen bij de bestelling gedaan");
+			addItems("16 bitterballen", 2.5);
 		} else {
 			alert("Geen bitterballen bij de bestelling gedaan omdat je geen 8 of 16 heb ingevoerd");
 		}
@@ -34,6 +24,20 @@ while(addNew) {
 		addNew = false;
 	} else {
 		alert("Niks bij de bestelling gedaan, verkeerde invoer gedaan");
+	}
+}
+
+function addItems(thingToAdd, priceOfThing) {
+	var amountToAdd = prompt("Hoeveel " + thingToAdd + " wil je bestellen?");
+	if(amountToAdd > 0) {
+		console.log("Amount is " + amountToAdd);
+		var localPrice = 0;
+		for (var i = 0; i < amountToAdd; i++) {
+			localPrice += priceOfThing;
+		}
+		orders[orders.length] = amountToAdd + " " + thingToAdd + ", \u20AC" + localPrice;
+		alert(amountToAdd + " " + thingToAdd + " bij de bestelling gedaan");
+		totalPrice += localPrice;
 	}
 }
 
