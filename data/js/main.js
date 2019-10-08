@@ -25,7 +25,7 @@ while(addNew) {
 		}
 	} else if(added == "stop" || added == "Stop") {
 		alert("Bestellen gestopt");
-		break;
+		addNew = false;
 	} else {
 		alert("Niks bij de bestelling gedaan, verkeerde invoer gedaan");
 	}
@@ -33,6 +33,7 @@ while(addNew) {
 
 var itemCount = 0;
 orders.forEach(function(item) {
-	itemCount++;
-	document.write(itemCount + ": " + item + '<br>');
+	var listItem = document.createElement("LI");
+	listItem.appendChild(document.createTextNode(item));
+	document.getElementById("List").appendChild(listItem);
 });
